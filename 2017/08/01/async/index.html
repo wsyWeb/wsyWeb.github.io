@@ -1,0 +1,874 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo.svg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>异步流程控制 - 小泡仔晋级中</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>wsy's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/timg.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-08-01 17:52" pubdate>
+        2017-08-01 17:52
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      59
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">异步流程控制</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>1什么是异步？<br>就是一个任务分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段（异步函数书写的时候不用”return”来返回值，必须通过回调函数来返回值）</p>
+<pre><code class="hljs JavaScript"><span class="hljs-comment">//例1</span>
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-keyword">var</span> data = fs.readFileSync(<span class="hljs-string">&#x27;text.txt&#x27;</span>)
+<span class="hljs-built_in">console</span>.log(data.toString());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;程序执行结束!&quot;</span>);
+<span class="hljs-comment">//执行结果：text, 程序执行结束</span>
+<span class="hljs-comment">//例2</span>
+fs.readFile(<span class="hljs-string">&#x27;text.txt&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error(err);
+  <span class="hljs-built_in">console</span>.log(data.toString());
+&#125;);
+<span class="hljs-comment">//执行结果：程序执行结束， text</span></code></pre>
+<p>以上代码可以看出例1是个同步函数，如果读取的text文件过大，会阻塞下面程序的执行，而例2会先读文件在执行其他程序，最后打印text的内容</p>
+<a id="more"></a>
+<h2 id="1、callback"><a href="#1、callback" class="headerlink" title="1、callback"></a>1、callback</h2><p>是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，这就是回调函数。回调函数不是由该函数的实现方直接调用，而是在特定的事件或条件发生时由另外的一方调用的，用于对该事件或条件进行响应。<br>以读取文件为例：</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fun</span> (<span class="hljs-params">file, callback</span>) </span>&#123;
+    fs.readFile(file, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">if</span> (err) &#123;
+        <span class="hljs-built_in">console</span>.log(err)
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        callback(data.toString())
+      &#125;
+    &#125;);
+&#125;
+fun(<span class="hljs-string">&#x27;text.txt&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data1</span>)</span>&#123;
+  fun(<span class="hljs-string">&#x27;text1.txt&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data2</span>) </span>&#123;
+    <span class="hljs-comment">//dosomething</span>
+  &#125;)
+&#125;)</code></pre>
+<p>从上面读取文件的例子可以看出callback函数最大多的问题在于陷入回调地狱，一层套一层的代码，可读性和维护性差</p>
+<h2 id="2、Stream"><a href="#2、Stream" class="headerlink" title="2、Stream"></a>2、Stream</h2><p>Stream（流）是很多I/0操作的抽象，被 Node 中的很多对象所实现。比如一个 HTTP 服务器的请求是一个流（可读流）（服务器的响应是一个流（可写流））。流是可读、可写或兼具两者的。所有流都是 EventEmitter 的实例。<br>stream有四种类型：<br>Readable，可读流<br>Writable，可写流<br>Duplex，读写流 (例：<a target="_blank" rel="noopener" href="http://codewinds.com/blog/2013-08-31-nodejs-duplex-streams.html">http://codewinds.com/blog/2013-08-31-nodejs-duplex-streams.html</a>)<br>Transform，扩展的Duplex<br>以读取文件为例，传统方式是用fs.readFile，这种方法会将数据全部读入内存，读取效率低。通过stream的createReadStream会将文件数据切割成小块，写入特定的处理函数，会大大提高效率。此文主要讲解Readable和Writable。<br>例:</p>
+<pre><code class="hljs JavaScript"> <span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
+ <span class="hljs-keyword">var</span> readabler = fs.createReadStream(src) ; <span class="hljs-comment">//创建可读流</span>
+ <span class="hljs-keyword">var</span> writeabler = fs.createWriteStream(src) <span class="hljs-comment">//创建可写流</span>
+ <span class="hljs-comment">//readtable使用方式</span>
+ readabler.read(<span class="hljs-string">&#x27;data&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">chunk</span>) </span>&#123;
+     rs.pause() ; <span class="hljs-comment">//pause暂停执行</span>
+     doSomething(chunk, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+         rs.resume() ; <span class="hljs-comment">//恢复读取</span>
+     &#125;) ;
+ &#125;) ;
+ readabler.on(<span class="hljs-string">&#x27;end&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+     doSomething();
+ &#125;)  ;
+<span class="hljs-comment">//writable使用方式</span>
+writeabler.write(<span class="hljs-string">&#x27;text1&#x27;</span>, <span class="hljs-string">&#x27;UTF8&#x27;</span>);
+writeabler.on(<span class="hljs-string">&#x27;finish&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; 给writeabler增加监听事件
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;写入完成。&quot;</span>);
+&#125;);
+writeabler.end() <span class="hljs-comment">//注意：end后不可再写入</span></code></pre>
+<p> 下面是一个读取时写入的例子<br> <pre><code class="hljs JavaScript"> <span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
+ <span class="hljs-keyword">var</span> readableStream = fs.createReadStream(src) ;
+ <span class="hljs-keyword">var</span> writableStream = fs.createWriteStream(src);
+ readableStream.on(<span class="hljs-string">&#x27;data&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">chunk</span>)</span>&#123;
+    <span class="hljs-keyword">if</span> (writableStream.write(chunk, <span class="hljs-string">&#x27;UTF8&#x27;</span>) === <span class="hljs-literal">null</span>);
+    readableStream.pause() <span class="hljs-comment">//此步骤的作用是当读取到的文件过大可能还没写完会造成文件丢失，故暂停读取</span>
+&#125;);
+writableStream.on(<span class="hljs-string">&#x27;drain&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 监听是否读取的内容是否写完，写完后，继续读取</span>
+    readableStream.resume();
+&#125;);
+
+readableStream.on(<span class="hljs-string">&#x27;end&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 当没有数据时，关闭数据流</span>
+    writableStream.end();
+&#125;);</code></pre><br> 上面的例子通过pipe可以轻易实现readableStream.pipe(writableStream)。pipe相当于文件交流的管道，可以控制文件的流向。</p>
+<p> 官网：<a target="_blank" rel="noopener" href="http://nodejs.cn/api/stream#stream_stream">http://nodejs.cn/api/stream#stream_stream</a></p>
+<h2 id="3、promise"><a href="#3、promise" class="headerlink" title="3、promise"></a>3、promise</h2><p>Promise 构造函数包含一个参数和一个带有 resolve（解析)和reject（拒绝）两个参数的回调。在回调中执行一些操作（例如异步），如果一切都正常，则调用 resolve，否则调用 reject。Promise对象的状态改变，只有两种可能：从Pending变为Resolved和从Pending变为Rejected，且状态一旦改变就不会再变</p>
+<p>Promise对象是一个构造函数，用来生成Promise实例</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+  <span class="hljs-comment">// do a thing, possibly async, then…</span>
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-comment">/* everything turned out fine */</span>) &#123;
+    resolve(<span class="hljs-string">&quot;Stuff worked!&quot;</span>); <span class="hljs-comment">//resolve在异步操作成功时调用，并将异步操作的结果，作为参数传递出去</span>
+  &#125;
+  <span class="hljs-keyword">else</span> &#123;
+    reject(<span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;It broke&quot;</span>)); <span class="hljs-comment">//reject在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去</span>
+  &#125;
+&#125;);</code></pre>
+
+<p>Promise实例生成以后，可以用then方法分别指定Resolved状态和Rejected状态的回调函数</p>
+<pre><code class="hljs JavaScript">promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(result); <span class="hljs-comment">// &quot;Stuff worked!&quot;</span>
+&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(err); <span class="hljs-comment">// Error: &quot;It broke&quot;</span>
+&#125;);</code></pre>
+<p>then() 方法接受两个回调函数作为参数：一个用于成功情形的回调和一个用于失败情形的回调。这两个都是可选的，因此您可以只添加一个用于成功情形或失败情形的回调。</p>
+<p>Promise 新建后就会立即执行</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;start&#x27;</span>)
+    resolve()
+&#125;)
+promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;end&#x27;</span>)
+&#125;)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;hi&#x27;</span>)
+
+<span class="hljs-comment">// &#x27;start&#x27; =&gt; &#x27;hi&#x27; =&gt; &#x27;end&#x27;</span></code></pre>
+<p>上面代码中，Promise 新建后立即执行，所以首先输出的是Promise。然后，then方法指定的回调函数将在当前脚本所有同步任务执行完才会执行，所以Resolved最后输出。</p>
+<p>调用resolve或reject并不会终结 Promise 的参数函数的执行。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+  resolve(<span class="hljs-number">1</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
+&#125;).then(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(r);
+&#125;);
+<span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// 1</span></code></pre>
+<p>上面代码中，调用resolve(1)以后，后面的console.log(2)还是会执行，并且会首先打印出来。这是因为立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。<br>Promise.prototype.then()<br>作用是为Promise实例添加状态改变时的回调函数。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-built_in">Promise</span>.prototype.then = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sucess, fail</span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.done(sucess);
+    <span class="hljs-built_in">this</span>.fail(fail);
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+&#125;;</code></pre>
+<p>Promise.prototype.catch()用于指定发生错误时的回调函数。如果Promise状态已经变成Resolved，在抛错是无效的<br>一般来说，调用resolve或reject以后，Promise 的使命就完成了，后继操作应该放到then方法里面，而不应该直接写在resolve或reject的后面。所以，最好在它们前面加上return语句，这样就不会有意外<br>Promise.all()用于将多个 Promise 实例，包装成一个新的 Promise 实例。。<br>,Promise.resolve(),Promise.reject()都是将非promise的对象转化为promise对象，其不同点在于生成对象实例的状态不同。</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> p = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-string">&#x27;出错了&#x27;</span>);
+<span class="hljs-keyword">var</span> q = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">&#x27;hello&#x27;</span>);
+<span class="hljs-comment">// 等同于</span>
+<span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> reject(<span class="hljs-string">&#x27;出错了&#x27;</span>))
+<span class="hljs-keyword">var</span> q = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> resolve(<span class="hljs-string">&#x27;hello&#x27;</span>))
+p.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>)</span>&#123;
+  <span class="hljs-built_in">console</span>.log(v)
+  &#125;, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(s)
+&#125;);</code></pre>
+<p>bluebird对promise的封装：<a target="_blank" rel="noopener" href="http://bluebirdjs.com/docs/api-reference.html">http://bluebirdjs.com/docs/api-reference.html</a></p>
+<h2 id="4、Generator"><a href="#4、Generator" class="headerlink" title="4、Generator"></a>4、Generator</h2><p>参照网址：<a target="_blank" rel="noopener" href="http://es6.ruanyifeng.com/#docs/generator">http://es6.ruanyifeng.com/#docs/generator</a><br>Generator函数形式上是一个普通函数，有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态。执行 Generator函数会返回一个遍历器对象(value: value; done: false/true）value属性表示当前的内部状态的值，是yield表达式后面那个表达式的值；done属性是一个布尔值，表示是否遍历结束。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">var</span> msg = <span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;first msg&#x27;</span>
+&#125;
+<span class="hljs-keyword">var</span> a = gen() <span class="hljs-comment">//获取遍历器对象</span>
+a.next() <span class="hljs-comment">//执行函数并返回&#123;value: &#x27;first msg&#x27;, done: false&#125;</span>
+a.next  <span class="hljs-comment">//执行函数并返回&#123;value: undefined, done: true&#125;</span></code></pre>
+<p>注意，generator函数也可以不用yield表达式，此时该函数就是一个单纯的暂缓执行函数,yield表达式只能在generator函数中使用</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;first msg&#x27;</span>)
+&#125;
+<span class="hljs-keyword">var</span> a = gen()
+a.next() <span class="hljs-comment">//first msg; &#123;value: undefined, done: true&#125;</span></code></pre>
+<p>yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;start&#x27;</span>)
+    <span class="hljs-keyword">var</span> msg = <span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;first msg&#x27;</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;I am back and bring&#x27;</span> + msg)
+&#125;
+<span class="hljs-keyword">var</span> a = gen()
+a.next() <span class="hljs-comment">// start; &#123;value: &#x27;first msg&#x27;, done: false&#125;</span>
+a.next(<span class="hljs-string">&#x27;something from outside&#x27;</span>) <span class="hljs-comment">// &#123;value: &#x27;I am back and bring something from outside&#x27;, done: false&#125;</span>
+a.next() <span class="hljs-comment">// &#123;value: undefined, done: true&#125;</span></code></pre>
+<p>例</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params">x</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> y = <span class="hljs-number">2</span> * (yeild(x + <span class="hljs-number">1</span>))
+    <span class="hljs-keyword">var</span> z = yeild(y * <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">return</span> (x +y + z)
+&#125;
+<span class="hljs-keyword">var</span> a = gen(<span class="hljs-number">2</span>) <span class="hljs-comment">// x: 2; y: undefined; z: undefind</span>
+a.next() &#123;<span class="hljs-attr">value</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125;
+a.next() &#123;<span class="hljs-attr">value</span>: NAN, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125;
+a.next() &#123;<span class="hljs-attr">value</span>: NAN, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125;
+
+a.next(<span class="hljs-number">3</span>) &#123;<span class="hljs-attr">value</span>: <span class="hljs-number">12</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125; <span class="hljs-comment">//yeild(x + 1)被赋值为3， y=6;</span>
+a.next(<span class="hljs-number">4</span>) &#123;<span class="hljs-attr">value</span>: <span class="hljs-number">12</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>&#125; <span class="hljs-comment">//yeild(y * 2)被赋值为4, z=4;</span></code></pre>
+<p>Generator函数可以用return 方法给定返回的值，终结函数</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+&#125;
+<span class="hljs-keyword">var</span> a = gen();
+a.next()        <span class="hljs-comment">// &#123; value: 1, done: false &#125;</span>
+a.return(<span class="hljs-string">&#x27;first msg&#x27;</span>)    <span class="hljs-comment">//&#123; value: &#x27;first msg&#x27;, done: true &#125;</span>
+
+注意：<span class="hljs-keyword">return</span>中如果没有参数，则返回的value为<span class="hljs-literal">undefined</span>。如果 Generator 函数内部有<span class="hljs-keyword">try</span>...finally代码块，那么<span class="hljs-keyword">return</span>方法会推迟到<span class="hljs-keyword">finally</span>代码块执行完再执行
+<span class="hljs-function"><span class="hljs-keyword">function</span> *<span class="hljs-title">gen</span> (<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+  &#125; <span class="hljs-keyword">finally</span> &#123;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+  &#125;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">4</span>;
+&#125;
+<span class="hljs-keyword">var</span> a = gen();
+a.next() <span class="hljs-comment">// &#123; value: 1, done: false &#125;</span>
+a.next() <span class="hljs-comment">// &#123; value: 2, done: false &#125;</span>
+a.return(<span class="hljs-number">5</span>) <span class="hljs-comment">// &#123; value: 3, done: false &#125;</span>
+a.next() <span class="hljs-comment">// &#123; value: 5, done: true &#125;</span></code></pre>
+<p>如果在 Generator 函数内部，调用另一个Generator函数，默认情况下是没有效果的。需要加上yield*</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;a&#x27;</span>;
+  <span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;b&#x27;</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;x&#x27;</span>;
+  foo();
+  <span class="hljs-keyword">yield</span> <span class="hljs-string">&#x27;y&#x27;</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">yield</span>* foo();
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+&#125;
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> v <span class="hljs-keyword">of</span> bar())&#123;
+  <span class="hljs-built_in">console</span>.log(v); <span class="hljs-comment">// &#x27;x&#x27;, &#x27;y&#x27;</span>
+&#125;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> v <span class="hljs-keyword">of</span> gen())&#123;
+  <span class="hljs-built_in">console</span>.log(v); <span class="hljs-comment">// 1, &#x27;a&#x27;, &#x27;b&#x27; 2</span>
+&#125;</code></pre>
+<p>Generator 函数内部还可以部署错误处理代码，捕获函数体外抛出的错误</p>
+<pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">x</span>)</span>&#123;
+  <span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">yield</span> x + <span class="hljs-number">2</span>;
+  &#125; <span class="hljs-keyword">catch</span> (e)&#123;
+    <span class="hljs-built_in">console</span>.log(e);
+  &#125;
+  <span class="hljs-keyword">return</span> y;
+&#125;
+
+<span class="hljs-keyword">var</span> g = gen(<span class="hljs-number">1</span>);
+g.next();
+g.throw（<span class="hljs-string">&#x27;出错了&#x27;</span>）</code></pre>
+<p>Thunk函数用于generator函数的流程管理，让其自动执行generator函数<br>co函数库其实就是将两种自动执行器（Thunk 函数和 Promise 对象），包装成一个库。使用 co 的前提条件是，Generator 函数的 yield 命令后面，只能是 Thunk 函数或 Promise 对象。<br>github地址：<a target="_blank" rel="noopener" href="https://github.com/tj/co">https://github.com/tj/co</a></p>
+<h2 id="5、async-function"><a href="#5、async-function" class="headerlink" title="5、async function"></a>5、async function</h2><p>异步函数会返回一个promise对象。调用成功时会用promise的resolve方法来处理这个返回值，抛出异常或者非法值时，会使用promise的reject方法来处理这个异常值。<br>类似generator</p>
+<pre><div class="caption"><span>JavaScript</span></div><code class="hljs bash">async <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">foo</span></span> () &#123;
+    var a = await <span class="hljs-string">&#x27;123&#x27;</span>
+    var b = await <span class="hljs-string">&#x27;234&#x27;</span>
+    console.log(a, b)
+&#125;
+foo () // 123, 234</code></pre>
+<p>async流程工具包：<a target="_blank" rel="noopener" href="http://caolan.github.io/async/">http://caolan.github.io/async/</a></p>
+<h2 id="6、RxJS"><a href="#6、RxJS" class="headerlink" title="6、RxJS"></a>6、RxJS</h2><p>rxjs全名Reactive Extensions for JavaScript，Javascript的响应式扩展，响应式的思路是把随时间不断变化的数据、状态、事件等等转成可被观察的序列(Observable Sequence)，然后订阅序列中那些Observable对象的变化，一旦变化，就会执行事先安排好的各种转换和操作<br>rxjs核心:</p>
+<ul>
+<li>Observable: 可观察的数据对象</li>
+<li>Observer: 观察者实例，用来决定何时观察指定数据.</li>
+<li>Subscription: 观察数据序列返回订阅实例.</li>
+<li>Operators: Observable的操作方法，包括转换数据序列，过滤等，所有的Operators方法接受的参数是上一次发送的数据变更的值，而方法返回值我们称之为发射新数据变更.</li>
+<li>Subject: 计时观察者也是观察者对象.</li>
+<li>Schedulers: 控制调度并发，即当Observable接受Subject的变更响应时，可以通过scheduler设置响应方式，目前内置的响应可以调用Object.keys(Rx.Subject)查看</li>
+</ul>
+<p><font color=#c7254e size=3>Observable</font><br>例：</p>
+<pre><code class="hljs JavaScript"><span class="hljs-comment">//可观察对象可以使用create创建，也可以用of,from,interval等</span>
+<span class="hljs-keyword">var</span> observable = Rx.Observable.create(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subscribe</span>(<span class="hljs-params">observer</span>) </span>&#123;
+  observer.next(<span class="hljs-number">1</span>)
+  &#125;)
+<span class="hljs-comment">//Operators</span>
+  observable.map(<span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>item * <span class="hljs-number">10</span>)
+<span class="hljs-comment">//观察者</span>
+  <span class="hljs-keyword">var</span> observe = &#123;
+    next: <span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-built_in">console</span>.log(x),
+    error: <span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span><span class="hljs-built_in">console</span>.log(err),
+    complete: <span class="hljs-function">()=&gt;</span><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;done&#x27;</span>),
+  &#125;
+<span class="hljs-comment">//观察者订阅可观察者对象</span>
+  observable.subscribe(observe)
+<span class="hljs-comment">//output: 1</span></code></pre>
+<p>上面代码中使用Rx.Observable.create操作符来创造一个可观察对象，使用一个观察者订阅它，可观察对象执行后给观察者发送next/error/complete通知。由于使用了map创建了一个新的可观察对象，新的可观察对象与当前可观察对象没有关系，故值为1。</p>
+<blockquote>
+<p>在Observable.create(function(observer){…})中的代码，表示了一个可观察对象的执行，一个仅在观察者订阅的时候发生的惰性计算。执行随着时间产生多个值，以同步或者异步的方式。<br>下面是可观察对象执行可以发送的三种类型的值:</p>
+</blockquote>
+<ul>
+<li>“Next”: 发送一个数字/字符串/对象等值。</li>
+<li>“Error”: 发送一个JS错误或者异常。</li>
+<li>“Complete” 不发送值。<br>Next通知是最重要且最常见的类型:它们代表发送给观察者的确切数据，Error和Complete通知可能仅在可观察对象执行期间仅发生一次，但仅会执行二者之中的一个。</li>
+</ul>
+<p><font color=#c7254e size=3>observer</font><br>观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数 ， 分别对应可观察对象发送的通知的类型:next, error和complete。<br>例：</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> observer=&#123;
+  next:<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Observer got a next value: &#x27;</span> + x),
+  error: <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&#x27;Observer got an error: &#x27;</span> + err),
+  complete: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Observer got a complete notification&#x27;</span>)
+&#125;</code></pre>
+<p>使用观察者，需要订阅可观察对象:</p>
+<pre><code class="hljs JavaScript">observable.subscribe(observer)</code></pre>
+<p>观察者是可选的，如果你不提供某个回调函数，可观察对象的执行仍然会照常发生，但某个类型的通知将不会发生，因为在观察者对象中没有对应于他们的回调函数。<br>下面代码中仅提供回调来作为参数也是可以的：</p>
+<pre><code class="hljs JavaScript">observable.subscribe(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Observer got a next value: &#x27;</span> + x));</code></pre>
+
+<p><font color=#c7254e size=3>Subscription</font><br>订阅表示一次性资源的对象，通常是一个可观察对象的执行。订阅对象有一个重要的方法:unsubscribe，该方法不需要参数，它可以弃掉可观察对象所持有的资源。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> observable = Rx.Observable.interval(<span class="hljs-number">1000</span>);
+<span class="hljs-keyword">var</span> subscription = observable.subscribe(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(x));
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;
+  subscription.unsubscribe();
+&#125;, <span class="hljs-number">3000</span>)</code></pre>
+<p>//output: 1, 2<br>订阅对象也可以被放置在一起，因此对一个订阅对象的unsubscribe()进行调用，可以对多个订阅进行取消。做法是:把一个订阅”加”进另一个订阅。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> observable1 = Rx.Observable.interval(<span class="hljs-number">400</span>);
+<span class="hljs-keyword">var</span> observable2 = Rx.Observable.interval(<span class="hljs-number">300</span>);
+<span class="hljs-keyword">var</span> subscription = observable1.subscribe(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;first: &#x27;</span> + x));
+<span class="hljs-keyword">var</span> childSubscription = observable2.subscribe(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;second: &#x27;</span> + x));
+subscription.add(childSubscription);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  subscription.unsubscribe();
+&#125;, <span class="hljs-number">1000</span>);
+<span class="hljs-comment">//output:</span>
+<span class="hljs-comment">//second: 0</span>
+<span class="hljs-comment">//first: 0</span>
+<span class="hljs-comment">//second: 1</span>
+<span class="hljs-comment">//first: 1</span>
+<span class="hljs-comment">//second: 2</span></code></pre>
+<p>remove(otherSubscription)方法,用于解除被add添加的子订阅。</p>
+<p><font color=#c7254e size=3>Subject</font><br>Subject是允许值被多播到多个观察者的一种特殊的Observable。它同时拥有 Observer 和 Observable 的行为, 而纯粹的可观察对象是单播的(每一个订阅的观察者拥有单独的可观察对象的执行)。<br>注意：<br>1.每一个Subject都是一个observable可观察对象，给定一个Subject后，你可以订阅它，提供的观察者将会正常的开始接收值。从观察者的角度来看，它不能判断一个可观察对象的执行时来自于单播的Observable还是来自于一个Subject.<br>2.每一个Subject都是一个Observer观察者对象。它是一个拥有next()/error()/complete()方法的对象。要想Subject提供一个新的值，只需调用next()，它将会被多播至用来监听Subject的观察者。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> subject = <span class="hljs-keyword">new</span> Rx.Subject();
+subject.subscribe(&#123;
+  next: <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;observerA: &#x27;</span> + v)
+&#125;);
+subject.subscribe(&#123;
+  next: <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;observerB: &#x27;</span> + v)
+&#125;);
+subject.next(<span class="hljs-number">1</span>);
+subject.next(<span class="hljs-number">2</span>);
+<span class="hljs-comment">//output:</span>
+<span class="hljs-comment">//observerA: 1</span>
+<span class="hljs-comment">//observerB: 1</span>
+<span class="hljs-comment">//observerA: 2</span>
+<span class="hljs-comment">//observerB: 2</span></code></pre>
+<blockquote>
+<p>注意：在订阅创建之前执行的 next() 就会丢失</p>
+</blockquote>
+<p>Subject也是一个观察者，你可以提供一个Subject当做observable.subscribe()的参数</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> subject = <span class="hljs-keyword">new</span> Rx.Subject();
+subject.subscribe(&#123;
+  next: <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;observerA: &#x27;</span> + v)
+&#125;);
+subject.subscribe(&#123;
+  next: <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;observerB: &#x27;</span> + v)
+&#125;);
+<span class="hljs-keyword">var</span> observable = Rx.Observable.from([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);
+observable.subscribe(subject);
+<span class="hljs-comment">//output:</span>
+<span class="hljs-comment">//observerA: 1</span>
+<span class="hljs-comment">//observerB: 1</span>
+<span class="hljs-comment">//observerA: 2</span>
+<span class="hljs-comment">//observerB: 2</span></code></pre>
+<p>BehaviorSubject<br>BehaviorSubject中可以传递一个当前值。当新的观察者订阅它时，会立即接受到这个来自BehaviorSubject的”当前值”。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> subject = <span class="hljs-keyword">new</span> Rx.BehaviorSubject(<span class="hljs-number">0</span>);
+subject.subscribe(&#123;
+  next: <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;observerA: &#x27;</span> + v)
+&#125;);
+subject.next(<span class="hljs-number">1</span>);
+subject.next(<span class="hljs-number">2</span>);
+subject.subscribe(&#123;
+  next: <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;observerB: &#x27;</span> + v)
+&#125;);
+subject.next(<span class="hljs-number">3</span>)
+<span class="hljs-comment">//output:</span>
+<span class="hljs-comment">//observerA: 0</span>
+<span class="hljs-comment">//observerA: 1</span>
+<span class="hljs-comment">//observerA: 2</span>
+<span class="hljs-comment">//observerA: 3</span>
+<span class="hljs-comment">//observerB: 3</span></code></pre>
+<p>ReplaySubject<br>ReplaySubject可以把已经发出的值保存在缓存之中。<br>AsyncSubject<br>AsyncSubject只发送给观察者可观察对象执行的最新值，并且仅在执行结束时。即当触发complete时会返回最新值，触发error时会返回err的内容</p>
+<p><font color=#c7254e size=3>Operators</font><br>操作符是可观察对象上定义的方法，例如.map(…),.filter(…),.merge(…)，等等。当他们被调用，会返回一个新的可观察对象，并不会改变当前的可观察对象实例。</p>
+<p><font color=#c7254e size=3>Scheduler</font><br>调度者控制着何时启动一个订阅和何时通知被发送。它有三个组件构成：一个调度者是一个数据结构，它知道如何根据优先级或其他标准存储和排列任务。一个调度者是一个执行上下文。它表示何处何时任务被执行。一个调度者具有虚拟的时钟。它通过调度器上的getter方法now()提供了“时间”的概念。 在特定调度程序上调度的任务将仅仅遵守由该时钟表示的时间。</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">var</span> observable = Rx.Observable.of(<span class="hljs-string">&#x27;foo&#x27;</span>, Rx.Scheduler.async)
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;before&#x27;</span>)
+observable.subscribe(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(value));
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;after&#x27;</span>)
+<span class="hljs-comment">//output:before, after, foo</span></code></pre>
+<p>官网：<a target="_blank" rel="noopener" href="http://reactivex.io/rxjs/manual/overview.html">http://reactivex.io/rxjs/manual/overview.html</a><br>rx操作符：<a target="_blank" rel="noopener" href="http://rxmarbles.com/">http://rxmarbles.com</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%BC%82%E6%AD%A5/">异步</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/callback/">callback</a>
+                    
+                      <a class="hover-with-bg" href="/tags/promise/">promise</a>
+                    
+                      <a class="hover-with-bg" href="/tags/async/">async</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处哦！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/12/06/other/someMethod/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一些项目中用到的方法（正则、去重、时间转换and more)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "ta1SazqmM6yS6gbxHfzzng2R-gzGzoHsz",
+          app_key: "lAKim19qxyluLDagQHWPIV5l",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a rel="nofollow noopener"><span>2020</span></a> <i class="iconfont icon-love"></i> <a href="https://wsyweb.github.io/" target="_blank" rel="nofollow noopener"><span>wsy</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "异步流程控制&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

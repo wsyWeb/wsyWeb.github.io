@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo.svg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>hexo Next主题集成gitalk and hexo 集成next主题的个性化 - 小泡仔晋级中</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>wsy's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/timg.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-07-31 16:41" pubdate>
+        2018-07-31 16:41
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      787 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">hexo Next主题集成gitalk and hexo 集成next主题的个性化</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>在此之前你要搭建好了自己的博客，具体方法查看hexo文档就可以了。这里不做过多阐述</p>
+<h2 id="hexo-Next主题集成gitalk"><a href="#hexo-Next主题集成gitalk" class="headerlink" title="hexo Next主题集成gitalk"></a>hexo Next主题集成gitalk</h2><h3 id="1、首先你要在GitHub上注册一个新的应用。注册位置在设置里面有一个developer-setting，进去之后选择New-OAuth-App"><a href="#1、首先你要在GitHub上注册一个新的应用。注册位置在设置里面有一个developer-setting，进去之后选择New-OAuth-App" class="headerlink" title="1、首先你要在GitHub上注册一个新的应用。注册位置在设置里面有一个developer setting，进去之后选择New OAuth App"></a>1、首先你要在GitHub上注册一个新的应用。注册位置在设置里面有一个developer setting，进去之后选择New OAuth App</h3><p><img src="/img/1.png" srcset="/img/loading.gif"></p>
+<a id="more"></a>
+
+<p>点击之后会进入如下页面:<br><img src="/img/2.png" srcset="/img/loading.gif"></p>
+<p>地址：<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">https://github.com/settings/applications/new</a></p>
+<p>参数说明：</p>
+<ul>
+<li>Application name： 应用名称</li>
+<li>Homepage URL：博客地址 （<a target="_blank" rel="noopener" href="https://wsyweb.github.io)/">https://wsyWeb.github.io）</a></li>
+<li>Application description # 描述</li>
+<li>Authorization callback URL：博客地址，（<a target="_blank" rel="noopener" href="https://wsyweb.github.io)/">https://wsyWeb.github.io）</a></li>
+</ul>
+<p>注册之后会生成 <font color=#c7254e size=3>Client ID</font> 和 <font color=#c7254e size=3>Client Secret</font>， 这两个参数在后序会用到</p>
+<h3 id="2、在next主题下的-layout-third-party-comments下新建一个gitalk-swig的文件夹（你也可以取别的名字），文件内容为："><a href="#2、在next主题下的-layout-third-party-comments下新建一个gitalk-swig的文件夹（你也可以取别的名字），文件内容为：" class="headerlink" title="2、在next主题下的/layout/_third-party/comments下新建一个gitalk.swig的文件夹（你也可以取别的名字），文件内容为："></a>2、在next主题下的/layout/_third-party/comments下新建一个gitalk.swig的文件夹（你也可以取别的名字），文件内容为：</h3><pre><code class="hljs handlebars"><span class="xml">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span>
+<span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/css/gitalk.css&quot;</span>&gt;</span></span>
+<span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/js/src/gitalk.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+
+<span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span></span>
+<span class="xml">		var gitalk = new Gitalk(&#123;</span>
+<span class="xml">		  clientID: &#x27;</span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">theme.gitalk.ClientID</span> &#125;&#125;</span><span class="xml">&#x27;,</span>
+<span class="xml">		  clientSecret: &#x27;</span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">theme.gitalk.ClientSecret</span> &#125;&#125;</span><span class="xml">&#x27;,</span>
+<span class="xml">		  repo: &#x27;</span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">theme.gitalk.repo</span> &#125;&#125;</span><span class="xml">&#x27;,</span>
+<span class="xml">		  owner: &#x27;</span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">theme.gitalk.githubID</span> &#125;&#125;</span><span class="xml">&#x27;,</span>
+<span class="xml">		  admin: [&#x27;</span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">theme.gitalk.adminUser</span> &#125;&#125;</span><span class="xml">&#x27;],</span>
+<span class="xml">		  id: location.pathname,</span>
+<span class="xml">		  distractionFreeMode: &#x27;</span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">theme.gitalk.distractionFreeMode</span> &#125;&#125;</span><span class="xml">&#x27;</span>
+<span class="xml">		&#125;)</span>
+<span class="xml">		gitalk.render(&#x27;gitalk-container&#x27;)</span>
+<span class="xml">       <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="xml">&#123;% endif %&#125;</span></code></pre>
+
+<blockquote>
+<p>注意：这里我引入gitalk的css和js皆下载到了本地，线上引用地址为<br>css: <a target="_blank" rel="noopener" href="https://unpkg.com/gitalk/dist/gitalk.css">https://unpkg.com/gitalk/dist/gitalk.css</a><br>js: /<a target="_blank" rel="noopener" href="https://unpkg.com/gitalk/dist/gitalk.min.js">https://unpkg.com/gitalk/dist/gitalk.min.js</a><br>本地css为js放入文件夹为next主题下 source/css 、 source/js/src</p>
+</blockquote>
+<p>创建好的gitalk文件引入layout/_third-party/comments/index.swig中，在index.swig中加入</p>
+<pre><code class="hljs django"><span class="hljs-template-tag">&#123;% <span class="hljs-name"><span class="hljs-name">include</span></span> &#x27;gitalk.swig&#x27; %&#125;</span>
+</code></pre>
+
+<p>修改next主题下/layout/_partials/comments.swig文件，找到该文件的最后一个if语句，加入代码</p>
+<pre><code class="hljs django"><span class="hljs-template-tag">&#123;% <span class="hljs-name">elseif</span> theme.gitalk.enable %&#125;</span>
+<span class="xml"> <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;gitalk-container&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+</code></pre>
+<p><img src="/assets/img/gitalk/3.jpg" srcset="/img/loading.gif"></p>
+<h3 id="3、在next主题的-config-yml中加入以下内容"><a href="#3、在next主题的-config-yml中加入以下内容" class="headerlink" title="3、在next主题的_config.yml中加入以下内容"></a>3、在next主题的_config.yml中加入以下内容</h3><pre><code class="hljs yaml"><span class="hljs-attr">gitalk:</span>
+  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">githubID:</span> <span class="hljs-string">你的githubID</span> <span class="hljs-string">如：wsyWeb</span>
+  <span class="hljs-attr">repo:</span> <span class="hljs-string">你的issue仓库地址，可以不是博客地址</span> <span class="hljs-string">如：wsyWeb.github.io</span>
+  <span class="hljs-attr">ClientID:</span> <span class="hljs-string">刚刚申请的</span> <span class="hljs-string">ClientID</span>
+  <span class="hljs-attr">ClientSecret:</span> <span class="hljs-string">刚刚申请的</span> <span class="hljs-string">ClientSecret</span>
+  <span class="hljs-attr">adminUser:</span> <span class="hljs-string">wsyWeb</span>
+  <span class="hljs-attr">distractionFreeMode:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>ok，到这里你的评论功能就能出来了，登录认证后就可以正常使用了，如果你想修改评论的样式。在next下/source/css/_common/components/third-party中新建文件gitalk.styl。把你自定义的样式写在里面，在/source/css/_common/components/third-party/third-party.styl中引用样式就可以了</p>
+<pre><code class="hljs css"><span class="hljs-keyword">@import</span> <span class="hljs-string">&quot;gitalk&quot;</span>;
+</code></pre>
+
+
+<h2 id="关于hexo集成next主题的个性化设置"><a href="#关于hexo集成next主题的个性化设置" class="headerlink" title="关于hexo集成next主题的个性化设置"></a>关于hexo集成next主题的个性化设置</h2><h3 id="点击出现桃心特效"><a href="#点击出现桃心特效" class="headerlink" title="点击出现桃心特效"></a>点击出现桃心特效</h3><p>在/themes/next/source/js/src里面新建click-love.js文件，打开<a target="_blank" rel="noopener" href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js%EF%BC%8C%E5%B0%86%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9%E6%8B%B7%E8%B4%9D%E8%BF%9B%E5%8E%BB%EF%BC%8C%E5%9C%A8/themes/next/layout/_layout.swig%E6%96%87%E4%BB%B6%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81">http://7u2ss1.com1.z0.glb.clouddn.com/love.js，将所有内容拷贝进去，在\themes\next\layout\_layout.swig文件末尾添加代码</a></p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/js/src/click-love.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>若不生效，hexo clean清除一下缓存再重新启动项目</p>
+<h3 id="个性化主题"><a href="#个性化主题" class="headerlink" title="个性化主题"></a>个性化主题</h3><p>next提供给用户自定义样式的style在文件themes\next\source\css\ _custom\custom.sty中，你可以在此引入图片，写入背景颜色等</p>
+<!--more-->
+
+<h3 id="更改footer"><a href="#更改footer" class="headerlink" title="更改footer"></a>更改footer</h3><p>在/themes/next/layout/_partials/footer.swig中找到 <font color="#c7254e" size=3 > if theme.footer.powered</font> 这句话，这句以下都是footer的内容，你可以改成你想要的</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/hexo/">hexo</a>
+                    
+                      <a class="hover-with-bg" href="/categories/hexo/gitalk/">gitalk</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处哦！</p>
+              
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "ta1SazqmM6yS6gbxHfzzng2R-gzGzoHsz",
+          app_key: "lAKim19qxyluLDagQHWPIV5l",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a rel="nofollow noopener"><span>2020</span></a> <i class="iconfont icon-love"></i> <a href="https://wsyweb.github.io/" target="_blank" rel="nofollow noopener"><span>wsy</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "hexo Next主题集成gitalk and hexo 集成next主题的个性化&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

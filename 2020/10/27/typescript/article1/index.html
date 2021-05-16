@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/logo.svg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>typescript初入门 - 小泡仔晋级中</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>wsy's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/timg.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-27 16:41" pubdate>
+        2020-10-27 16:41
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">typescript初入门</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="什么是TypeScript"><a href="#什么是TypeScript" class="headerlink" title="什么是TypeScript"></a>什么是TypeScript</h3><p>TypeScript 是 JavaScript 的一个超集，主要提供了<strong>类型系统</strong>和<strong>对 ES6 的支持</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/">官网</a>的定义：</p>
+<blockquote>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Any browser. Any host. Any OS. Open source.</p>
+</blockquote>
+<p>翻译成中文即是：</p>
+<blockquote>
+<p>TypeScript 是 JavaScript 的类型的超集，它可以编译成纯 JavaScript。编译出来的 JavaScript 可以运行在任何浏览器上。TypeScript 编译工具可以运行在任何服务器和任何系统上。TypeScript 是开源的。</p>
+</blockquote>
+<h3 id="TypeScript的优势"><a href="#TypeScript的优势" class="headerlink" title="TypeScript的优势"></a>TypeScript的优势</h3><ul>
+<li>TypeScript 增加了代码的可读性和可维护性</li>
+<li>TypeScript 非常包容</li>
+<li>TypeScript 拥有活跃的社区</li>
+</ul>
+<h3 id="TypeScript的劣势"><a href="#TypeScript的劣势" class="headerlink" title="TypeScript的劣势"></a>TypeScript的劣势</h3><ul>
+<li>有一定的学习成本，短期可能会增加一些开发成本</li>
+<li>集成到构建流程需要一些工作量</li>
+<li>可能和一些库结合的不是很完美</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><blockquote>
+<p>JavaScript 的类型分为两种：原始数据类型（Primitive data types）和对象类型（Object types）。<br>原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol</p>
+</blockquote>
+<h4 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h4><h5 id="1、布尔值"><a href="#1、布尔值" class="headerlink" title="1、布尔值"></a>1、布尔值</h5><p>布尔值是最基础的数据类型，在 TypeScript 中，使用 <code>boolean</code> 定义布尔值类型：</p>
+<pre><code class="hljs JavaScript"><span class="hljs-keyword">let</span> isDone: boolean = <span class="hljs-literal">false</span>;
+<span class="hljs-comment">// 编译通过</span></code></pre>
+<p>使用构造函数 <code>Boolean</code> 创造的对象<strong>不是</strong>布尔值：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> createdByNewBoolean: boolean = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">// Type &#x27;Boolean&#x27; is not assignable to type &#x27;boolean&#x27;.</span>
+<span class="hljs-comment">//   &#x27;boolean&#x27; is a primitive, but &#x27;Boolean&#x27; is a wrapper object. Prefer using &#x27;boolean&#x27; when possible.</span></code></pre>
+<p>事实上 <code>new Boolean()</code> 返回的是一个 <code>Boolean</code> 对象：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> createdByNewBoolean: <span class="hljs-built_in">Boolean</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(<span class="hljs-number">1</span>);</code></pre>
+<p>直接调用 <code>Boolean</code> 也可以返回一个 <code>boolean</code> 类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> createdByBoolean: boolean = <span class="hljs-built_in">Boolean</span>(<span class="hljs-number">1</span>);</code></pre>
+<p>在 TypeScript 中，<code>boolean</code> 是 JavaScript 中的基本类型，而 <code>Boolean</code> 是 JavaScript 中的构造函数。其他基本类型（除了 null 和 undefined）一样。</p>
+<h5 id="2、数值"><a href="#2、数值" class="headerlink" title="2、数值"></a>2、数值</h5><p>使用 <code>number</code> 定义数值类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> decLiteral: number = <span class="hljs-number">6</span>;
+<span class="hljs-keyword">let</span> hexLiteral: number = <span class="hljs-number">0xf00d</span>;
+<span class="hljs-comment">// ES6 中的二进制表示法</span>
+<span class="hljs-keyword">let</span> binaryLiteral: number = <span class="hljs-number">0b1010</span>;
+<span class="hljs-comment">// ES6 中的八进制表示法</span>
+<span class="hljs-keyword">let</span> octalLiteral: number = <span class="hljs-number">0o744</span>;
+<span class="hljs-keyword">let</span> notANumber: number = <span class="hljs-literal">NaN</span>;
+<span class="hljs-keyword">let</span> infinityNumber: number = <span class="hljs-literal">Infinity</span>;</code></pre>
+<p>编译结果</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">var</span> decLiteral = <span class="hljs-number">6</span>;
+<span class="hljs-keyword">var</span> hexLiteral = <span class="hljs-number">0xf00d</span>;
+<span class="hljs-comment">// ES6 中的二进制表示法</span>
+<span class="hljs-keyword">var</span> binaryLiteral = <span class="hljs-number">10</span>;
+<span class="hljs-comment">// ES6 中的八进制表示法</span>
+<span class="hljs-keyword">var</span> octalLiteral = <span class="hljs-number">484</span>;
+<span class="hljs-keyword">var</span> notANumber = <span class="hljs-literal">NaN</span>;
+<span class="hljs-keyword">var</span> infinityNumber = <span class="hljs-literal">Infinity</span>;</code></pre>
+<h5 id="3、字符串"><a href="#3、字符串" class="headerlink" title="3、字符串"></a>3、字符串</h5><p>使用 <code>string</code> 定义字符串类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> myName: string = <span class="hljs-string">&#x27;Tom&#x27;</span>;
+<span class="hljs-keyword">let</span> myAge: number = <span class="hljs-number">25</span>;
+
+<span class="hljs-comment">// 模板字符串</span>
+<span class="hljs-keyword">let</span> sentence: string = <span class="hljs-string">`Hello, my name is <span class="hljs-subst">$&#123;myName&#125;</span>.</span>
+<span class="hljs-string">I&#x27;ll be <span class="hljs-subst">$&#123;myAge + <span class="hljs-number">1</span>&#125;</span> years old next month.`</span>;</code></pre>
+<p>编译结果</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">var</span> myName = <span class="hljs-string">&#x27;Tom&#x27;</span>;
+<span class="hljs-keyword">var</span> myAge = <span class="hljs-number">25</span>;
+<span class="hljs-comment">// 模板字符串</span>
+<span class="hljs-keyword">var</span> sentence = <span class="hljs-string">&quot;Hello, my name is &quot;</span> + myName + <span class="hljs-string">&quot;.\nI&#x27;ll be &quot;</span> + (myAge + <span class="hljs-number">1</span>) + <span class="hljs-string">&quot; years old next month.&quot;</span>;</code></pre>
+<h5 id="4、空值"><a href="#4、空值" class="headerlink" title="4、空值"></a>4、空值</h5><p>JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 <code>void</code> 表示没有任何返回值的函数：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">alertName</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>&#123;
+    alert(<span class="hljs-string">&#x27;My name is Tom&#x27;</span>);
+&#125;</code></pre>
+<p>声明一个 void 类型的变量没有什么用，因为你只能将它赋值为 undefined 和 null：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> unusable: <span class="hljs-keyword">void</span> = <span class="hljs-literal">undefined</span>;</code></pre>
+<h5 id="5、Null-和-Undefined"><a href="#5、Null-和-Undefined" class="headerlink" title="5、Null 和 Undefined"></a>5、Null 和 Undefined</h5><p>在 TypeScript 中，可以使用 <code>null</code> 和 <code>undefined</code> 来定义这两个原始数据类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> u: <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> n: <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;</code></pre>
+<p>与 <code>void</code> 的区别是，<code>undefined</code> 和 <code>null</code> 是所有类型的子类型。也就是说 <code>undefined</code> 类型的变量，可以赋值给 <code>number</code> 类型的变量：</p>
+<pre><code class="hljs Javascript"><span class="hljs-comment">// 这样不会报错</span>
+<span class="hljs-keyword">let</span> num: number = <span class="hljs-literal">undefined</span>;
+<span class="hljs-comment">// 这样也不会报错</span>
+<span class="hljs-keyword">let</span> u: <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> num: number = u</code></pre>
+<h4 id="任意值"><a href="#任意值" class="headerlink" title="任意值"></a>任意值</h4><blockquote>
+<p>任意值（Any）用来表示允许赋值为任意类型。</p>
+</blockquote>
+<p>一个普通类型，在赋值过程中改变类型是不被允许的：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> myFavoriteNumber: string = <span class="hljs-string">&#x27;seven&#x27;</span>;
+myFavoriteNumber = <span class="hljs-number">7</span>;
+
+<span class="hljs-comment">// index.ts(2,1): error TS2322: Type &#x27;number&#x27; is not assignable to type &#x27;string&#x27;.</span></code></pre>
+<p>如果是 any 类型，则允许被赋值为任意类型。</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> myFavoriteNumber: any = <span class="hljs-string">&#x27;seven&#x27;</span>;
+myFavoriteNumber = <span class="hljs-number">7</span>;</code></pre>
+<p>任意值的属性和方法</p>
+<pre><code class="hljs Javascript"><span class="hljs-comment">// 在任意值上访问任何属性都是允许的</span>
+<span class="hljs-keyword">let</span> anyThing: any = <span class="hljs-string">&#x27;hello&#x27;</span>;
+<span class="hljs-built_in">console</span>.log(anyThing.myName);
+<span class="hljs-built_in">console</span>.log(anyThing.myName.firstName);
+
+<span class="hljs-comment">//也允许调用任何方法</span>
+<span class="hljs-keyword">let</span> anyThing: any = <span class="hljs-string">&#x27;Tom&#x27;</span>;
+anyThing.setName(<span class="hljs-string">&#x27;Jerry&#x27;</span>);
+anyThing.setName(<span class="hljs-string">&#x27;Jerry&#x27;</span>).sayHello();
+anyThing.myName.setFirstName(<span class="hljs-string">&#x27;Cat&#x27;</span>);</code></pre>
+<p><strong>声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值。变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型</strong></p>
+<h4 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h4><blockquote>
+<p>如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。</p>
+</blockquote>
+<p>TypeScript 会在没有明确的指定类型的时候推测出一个类型，这就是类型推论。以下代码虽然没有指定类型，但是会在编译的时候报错：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> myFavoriteNumber = <span class="hljs-string">&#x27;seven&#x27;</span>;
+myFavoriteNumber = <span class="hljs-number">7</span>;
+
+<span class="hljs-comment">// index.ts(2,1): error TS2322: Type &#x27;number&#x27; is not assignable to type &#x27;string&#x27;.</span>
+
+等价于
+<span class="hljs-keyword">let</span> myFavoriteNumber: string = <span class="hljs-string">&#x27;seven&#x27;</span>;
+myFavoriteNumber = <span class="hljs-number">7</span>;
+
+<span class="hljs-comment">// index.ts(2,1): error TS2322: Type &#x27;number&#x27; is not assignable to type &#x27;string&#x27;.</span></code></pre>
+<p><strong>如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查：</strong></p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> myFavoriteNumber;
+myFavoriteNumber = <span class="hljs-string">&#x27;seven&#x27;</span>;
+myFavoriteNumber = <span class="hljs-number">7</span>;</code></pre>
+<h4 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h4><blockquote>
+<p>合类型（Union Types）表示取值可以为多种类型中的一种。使用 | 分隔每个类型。</p>
+</blockquote>
+<pre><code class="hljs Javascript"><span class="hljs-comment">// 允许 myFavoriteNumber 的类型是 string 或者 number，但是不能是其他类型。</span>
+<span class="hljs-keyword">let</span> myFavoriteNumber: string | number;
+myFavoriteNumber = <span class="hljs-string">&#x27;seven&#x27;</span>;
+myFavoriteNumber = <span class="hljs-number">7</span>;
+
+myFavoriteNumber = <span class="hljs-literal">true</span>; <span class="hljs-comment">//不被允许</span>
+<span class="hljs-comment">// index.ts(2,1): error TS2322: Type &#x27;boolean&#x27; is not assignable to type &#x27;string | number&#x27;.</span>
+<span class="hljs-comment">//   Type &#x27;boolean&#x27; is not assignable to type &#x27;number&#x27;.</span></code></pre>
+<p>当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们<strong>只能访问此联合类型的所有类型里共有的属性或方法</strong></p>
+<pre><code class="hljs Javascript"><span class="hljs-comment">// length 不是 string 和 number 的共有属性</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getLength</span>(<span class="hljs-params">something: string | number</span>): <span class="hljs-title">number</span> </span>&#123;
+    <span class="hljs-keyword">return</span> something.length;
+&#125;
+
+<span class="hljs-comment">// index.ts(2,22): error TS2339: Property &#x27;length&#x27; does not exist on type &#x27;string | number&#x27;.</span>
+<span class="hljs-comment">//   Property &#x27;length&#x27; does not exist on type &#x27;number&#x27;</span>
+
+<span class="hljs-comment">//访问 string 和 number 的共有属性是没问题的</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getString</span>(<span class="hljs-params">something: string | number</span>): <span class="hljs-title">string</span> </span>&#123;
+    <span class="hljs-keyword">return</span> something.toString();
+&#125;</code></pre>
+<p>联合类型的变量在被赋值的时候，会根据类型推论的规则推断出一个类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> myFavoriteNumber: string | number;
+myFavoriteNumber = <span class="hljs-string">&#x27;seven&#x27;</span>; <span class="hljs-comment">// myFavoriteNumber 被推断成了 string, 访问它的 length 属性不会报错</span>
+<span class="hljs-built_in">console</span>.log(myFavoriteNumber.length); <span class="hljs-comment">// 5</span>
+myFavoriteNumber = <span class="hljs-number">7</span>; <span class="hljs-comment">// myFavoriteNumber 被推断成了 number, 访问它的 length 属性会报错</span>
+<span class="hljs-built_in">console</span>.log(myFavoriteNumber.length); <span class="hljs-comment">// 编译时报错</span>
+
+<span class="hljs-comment">// index.ts(5,30): error TS2339: Property &#x27;length&#x27; does not exist on type &#x27;number&#x27;.</span></code></pre>
+<h4 id="对象的类型–接口"><a href="#对象的类型–接口" class="headerlink" title="对象的类型–接口"></a>对象的类型–接口</h4><h5 id="1、什么是接口"><a href="#1、什么是接口" class="headerlink" title="1、什么是接口"></a>1、什么是接口</h5><blockquote>
+<p>在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。</p>
+</blockquote>
+<blockquote>
+<p>TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。</p>
+</blockquote>
+<blockquote>
+<p>在 TypeScript 中，我们使用接口（Interfaces）来定义对象的类型。</p>
+</blockquote>
+<p>定义一个接口 Person，接着定义了一个变量 tom，它的类型是 Person。这样，我们就约束了 tom 的形状必须和接口 Person 一致。</p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    name: string;
+    age: number;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    age: <span class="hljs-number">25</span>
+&#125;;
+
+<span class="hljs-comment">// 定义的变量比接口少了一些属性是不允许的：</span>
+interface Person &#123;
+    name: string;
+    age: number;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>
+&#125;;
+
+<span class="hljs-comment">// index.ts(6,5): error TS2322: Type &#x27;&#123; name: string; &#125;&#x27; is not assignable to type &#x27;Person&#x27;.</span>
+<span class="hljs-comment">//   Property &#x27;age&#x27; is missing in type &#x27;&#123; name: string; &#125;&#x27;.</span>
+
+<span class="hljs-comment">//多一些属性也是不允许的：</span>
+nterface Person &#123;
+    name: string;
+    age: number;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    age: <span class="hljs-number">25</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;
+
+<span class="hljs-comment">// error TS2322: Type &#x27;&#123; name: string; age: number; gender: string; &#125;&#x27; is not assignable to type &#x27;Person&#x27;.</span>
+<span class="hljs-comment">//   Object literal may only specify known properties, and &#x27;gender&#x27; does not exist in type &#x27;Person&#x27;.</span>
+</code></pre>
+<p><strong>赋值的时候，变量的形状必须和接口的形状保持一致。</strong> </p>
+<h5 id="2、可选属性"><a href="#2、可选属性" class="headerlink" title="2、可选属性"></a>2、可选属性</h5><p>有时我们希望不要完全匹配一个形状（即：可选属性的含义是该属性可以不存在），那么可以用可选属性：</p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    name: string;
+    age?: number;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>
+&#125;;</code></pre>
+<p>注意：<strong>仍然不允许添加未定义的属性：</strong></p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    name: string;
+    age?: number;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    age: <span class="hljs-number">25</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;
+
+<span class="hljs-comment">// error TS2322: Type &#x27;&#123; name: string; age: number; gender: string; &#125;&#x27; is not assignable to type &#x27;Person&#x27;.</span>
+  <span class="hljs-built_in">Object</span> literal may only specify known properties, and <span class="hljs-string">&#x27;gender&#x27;</span> does not exist <span class="hljs-keyword">in</span> type <span class="hljs-string">&#x27;Person&#x27;</span>.</code></pre>
+<h5 id="3、任意属性"><a href="#3、任意属性" class="headerlink" title="3、任意属性"></a>3、任意属性</h5><p>有时候我们希望一个接口允许有任意的属性，可以使用如下方式：</p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    name: string;
+    age?: number;
+    [propName: string]: any;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;</code></pre>
+<p>使用 <code>[propName: string]</code> 定义了任意属性取 string 类型的值。<strong>一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集</strong>：</p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    name: string;
+    age?: number;
+    [propName: string]: string;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    age: <span class="hljs-number">25</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;
+<span class="hljs-comment">//error TS2322: Type &#x27;&#123; name: string; age: number; gender: string; &#125;&#x27; is not assignable to type &#x27;Person&#x27;.</span>
+  Property <span class="hljs-string">&#x27;age&#x27;</span> is incompatible <span class="hljs-keyword">with</span> index signature.
+    Type <span class="hljs-string">&#x27;number&#x27;</span> is not assignable to type <span class="hljs-string">&#x27;string&#x27;</span>.</code></pre>
+<p>上例中，任意属性的值允许是 string，但是可选属性 age 的值却是 number，number 不是 string 的子属性，所以报错了。</p>
+<p>一个接口中只能定义一个任意属性。如果接口中有多个类型的属性，则可以在任意属性中使用联合类型：</p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    name: string;
+    age?: number;
+    [propName: string]: string | number;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    age: <span class="hljs-number">25</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;</code></pre>
+<h5 id="4、只读属性"><a href="#4、只读属性" class="headerlink" title="4、只读属性"></a>4、只读属性</h5><p>有些字段只能在创建的时候被赋值，可以用 readonly 定义只读属性:</p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    readonly id: number;
+    name: string;
+    age?: number;
+    [propName: string]: any;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    id: <span class="hljs-number">0</span>,
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;
+
+tom.id = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// error TS2540: Cannot assign to &#x27;id&#x27; because it is a read-only property.</span></code></pre>
+
+<p><strong>注意，只读的约束存在于第一次给对象赋值的时候，而不是第一次给只读属性赋值的时候：</strong></p>
+<pre><code class="hljs Javascript">interface Person &#123;
+    readonly id: number;
+    name: string;
+    age?: number;
+    [propName: string]: any;
+&#125;
+
+<span class="hljs-keyword">let</span> tom: Person = &#123;
+    name: <span class="hljs-string">&#x27;Tom&#x27;</span>,
+    gender: <span class="hljs-string">&#x27;male&#x27;</span>
+&#125;;
+
+tom.id = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// error TS2741: Property &#x27;id&#x27; is missing in type &#x27;&#123; name: string; gender: string; &#125;&#x27; but required in type &#x27;Person&#x27;.</span>
+<span class="hljs-comment">//Cannot assign to &#x27;id&#x27; because it is a read-only property</span>
+<span class="hljs-comment">//上例中，报错信息有两处，第一处是在对 tom 进行赋值的时候，没有给 id 赋值。</span>
+<span class="hljs-comment">//第二处是在给 tom.id 赋值的时候，由于它是只读属性，所以报错了。</span></code></pre>
+<h4 id="数组的类型"><a href="#数组的类型" class="headerlink" title="数组的类型"></a>数组的类型</h4><h5 id="1、类型-方括号」表示法"><a href="#1、类型-方括号」表示法" class="headerlink" title="1、类型 + 方括号」表示法"></a>1、类型 + 方括号」表示法</h5><pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> a: number[] = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-comment">//数组项中不允许出现其他类型</span>
+<span class="hljs-keyword">let</span> a: number[] = [<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-comment">// Type &#x27;string&#x27; is not assignable to type &#x27;number&#x27;.</span></code></pre>
+<p>数组的一些方法的参数也会根据数组在定义时约定的类型进行限制，push 方法只允许传入 number 类型的参数:</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> a: number[] = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];
+a.push(<span class="hljs-string">&#x27;8&#x27;</span>);
+
+<span class="hljs-comment">// Argument of type &#x27;string&#x27; is not assignable to parameter of type &#x27;number&#x27;</span></code></pre>
+<h5 id="2、数组泛型"><a href="#2、数组泛型" class="headerlink" title="2、数组泛型"></a>2、数组泛型</h5><p>数组泛型（Array Generic） <code>Array &lt;elemType&gt;</code> 来表示数组</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> a: <span class="hljs-built_in">Array</span>&lt;number&gt; = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];</code></pre>
+<h5 id="3、用接口表示数组"><a href="#3、用接口表示数组" class="headerlink" title="3、用接口表示数组"></a>3、用接口表示数组</h5><pre><code class="hljs Javascript">interface NumberArray &#123;
+    [index: number]: number;
+&#125;
+<span class="hljs-keyword">let</span> a: NumberArray = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>];</code></pre>
+<p>NumberArray 表示：只要索引的类型是数字时，那么值的类型必须是数字。</p>
+<h5 id="4、类数组"><a href="#4、类数组" class="headerlink" title="4、类数组"></a>4、类数组</h5><p>类数组（Array-like Object）不是数组类型，比如 arguments：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">let</span> args: number[] = <span class="hljs-built_in">arguments</span>;
+&#125;
+
+<span class="hljs-comment">// Type &#x27;IArguments&#x27; is missing the following properties from type &#x27;number[]&#x27;: pop, push, concat, join, and 24 more.</span></code></pre>
+<p>上例中，arguments 实际上是一个类数组，不能用普通的数组的方式来描述，而应该用接口：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">let</span> args: &#123;
+        [index: number]: number;
+        length: number;
+        callee: <span class="hljs-built_in">Function</span>;
+    &#125; = <span class="hljs-built_in">arguments</span>;
+&#125;</code></pre>
+<h5 id="5、any-在数组中的应用"><a href="#5、any-在数组中的应用" class="headerlink" title="5、any 在数组中的应用"></a>5、any 在数组中的应用</h5><p>any 表示数组中允许出现任意类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> list: any[] = [<span class="hljs-string">&#x27;xcatliu&#x27;</span>, <span class="hljs-number">25</span>, &#123; <span class="hljs-attr">website</span>: <span class="hljs-string">&#x27;http://xcatliu.com&#x27;</span> &#125;];</code></pre>
+<h4 id="函数的类型"><a href="#函数的类型" class="headerlink" title="函数的类型"></a>函数的类型</h4><h5 id="1、函数声明"><a href="#1、函数声明" class="headerlink" title="1、函数声明"></a>1、函数声明</h5><p>在 JavaScript 中，有两种常见的定义函数的方式——函数声明（Function Declaration）和函数表达式（Function Expression）：</p>
+<pre><code class="hljs Javascript"><span class="hljs-comment">// 函数声明（Function Declaration）</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x, y</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;
+
+<span class="hljs-comment">// 函数表达式（Function Expression）</span>
+<span class="hljs-keyword">let</span> mySum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, y</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;;</code></pre>
+<p>在 TypeScript 中对其进行约束，需要把输入和输出都考虑到，其中函数声明的类型定义较简单：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x: number, y: number</span>): <span class="hljs-title">number</span> </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;</code></pre>
+<p><strong>注意，输入多余的（或者少于要求的）参数，是不被允许的：</strong></p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x: number, y: number</span>): <span class="hljs-title">number</span> </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;
+sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+
+<span class="hljs-comment">// Expected 2 arguments, but got 3.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x: number, y: number</span>): <span class="hljs-title">number</span> </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;
+sum(<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">//  Expected 2 arguments, but got 1.</span></code></pre>
+<h5 id="2、函数表达式"><a href="#2、函数表达式" class="headerlink" title="2、函数表达式"></a>2、函数表达式</h5><p>写一个对函数表达式（Function Expression）的定义</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> mySum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x: number, y: number</span>): <span class="hljs-title">number</span> </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;;</code></pre>
+<p>上面的代码只对等号右侧的匿名函数进行了类型定义，而等号左边的 mySum，是通过赋值操作进行类型推论而推断出来的。如果需要我们手动给 mySum 添加类型，则应该是这样：</p>
+<pre><code class="hljs Javascript"><span class="hljs-keyword">let</span> mySum: <span class="hljs-function">(<span class="hljs-params">x: number, y: number</span>) =&gt;</span> number = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x: number, y: number</span>): <span class="hljs-title">number</span> </span>&#123;
+    <span class="hljs-keyword">return</span> x + y;
+&#125;;</code></pre>
+<p><strong>在 TypeScript 的类型定义中，=&gt; 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。</strong></p>
+<h5 id="3、用接口定义函数的形状"><a href="#3、用接口定义函数的形状" class="headerlink" title="3、用接口定义函数的形状"></a>3、用接口定义函数的形状</h5><pre><code class="hljs Javascript">interface SearchFunc &#123;
+    (source: string, <span class="hljs-attr">subString</span>: string): boolean;
+&#125;
+
+<span class="hljs-keyword">let</span> mySearch: SearchFunc;
+mySearch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">source: string, subString: string</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> source.search(subString) !== -<span class="hljs-number">1</span>;
+&#125;</code></pre>
+<p>采用函数表达式|接口定义函数的方式时，对等号左侧进行类型限制，可以保证以后对函数名赋值时保证参数个数、参数类型、返回值类型不变。</p>
+<h5 id="4、可选参数"><a href="#4、可选参数" class="headerlink" title="4、可选参数"></a>4、可选参数</h5><p>用 ? 表示可选的参数:</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: string, lastName?: string</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (lastName) &#123;
+        <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> firstName;
+    &#125;
+&#125;
+<span class="hljs-keyword">let</span> tomcat = buildName(<span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;Cat&#x27;</span>);
+<span class="hljs-keyword">let</span> tom = buildName(<span class="hljs-string">&#x27;Tom&#x27;</span>);</code></pre>
+<p><strong>注意：可选参数必须接在必需参数后面。换句话说，可选参数后面不允许再出现必需参数：</strong></p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName?: string, lastName: string</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (firstName) &#123;
+        <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> lastName;
+    &#125;
+&#125;
+<span class="hljs-keyword">let</span> tomcat = buildName(<span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;Cat&#x27;</span>);
+<span class="hljs-keyword">let</span> tom = buildName(<span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;Tom&#x27;</span>);
+
+<span class="hljs-comment">// A required parameter cannot follow an optional parameter</span></code></pre>
+<h5 id="5、参数默认值"><a href="#5、参数默认值" class="headerlink" title="5、参数默认值"></a>5、参数默认值</h5><p>在 ES6 中，我们允许给函数的参数添加默认值，<strong>TypeScript 会将添加了默认值的参数识别为可选参数：</strong></p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: string, lastName: string = <span class="hljs-string">&#x27;Cat&#x27;</span></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName;
+&#125;
+<span class="hljs-keyword">let</span> tomcat = buildName(<span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;Cat&#x27;</span>);
+<span class="hljs-keyword">let</span> tom = buildName(<span class="hljs-string">&#x27;Tom&#x27;</span>);</code></pre>
+<p>此时不受「可选参数必须接在必需参数后面」的限制：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: string = <span class="hljs-string">&#x27;Tom&#x27;</span>, lastName: string</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName;
+&#125;
+<span class="hljs-keyword">let</span> tomcat = buildName(<span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;Cat&#x27;</span>);
+<span class="hljs-keyword">let</span> cat = buildName(<span class="hljs-literal">undefined</span>, <span class="hljs-string">&#x27;Cat&#x27;</span>);</code></pre>
+<h5 id="6、剩余参数"><a href="#6、剩余参数" class="headerlink" title="6、剩余参数"></a>6、剩余参数</h5><p>ES6 中，可以使用 …rest 的方式获取函数中的剩余参数（rest 参数）：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">push</span>(<span class="hljs-params">array, ...items</span>) </span>&#123;
+    items.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123;
+        array.push(item);
+    &#125;);
+&#125;
+
+<span class="hljs-keyword">let</span> a: any[] = [];
+push(a, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre>
+<p>事实上，items 是一个数组。所以我们可以用数组的类型来定义它：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">push</span>(<span class="hljs-params">array: any[], ...items: any[]</span>) </span>&#123;
+    items.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123;
+        array.push(item);
+    &#125;);
+&#125;
+
+<span class="hljs-keyword">let</span> a = [];
+push(a, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre>
+<p>注意：<strong>rest 参数只能是最后一个参数</strong></p>
+<h5 id="7、重载"><a href="#7、重载" class="headerlink" title="7、重载"></a>7、重载</h5><p>重载允许一个函数接受不同数量或类型的参数时，作出不同的处理</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">x: number | string</span>): <span class="hljs-title">number</span> | <span class="hljs-title">string</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&#x27;number&#x27;</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(x.toString().split(<span class="hljs-string">&#x27;&#x27;</span>).reverse().join(<span class="hljs-string">&#x27;&#x27;</span>));
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+        <span class="hljs-keyword">return</span> x.split(<span class="hljs-string">&#x27;&#x27;</span>).reverse().join(<span class="hljs-string">&#x27;&#x27;</span>);
+    &#125;
+&#125;</code></pre>
+<p><strong>然而这样有一个缺点，就是不能够精确的表达，输入为数字的时候，输出也应该为数字，输入为字符串的时候，输出也应该为字符串。</strong><br>可以使用重载定义多个 reverse 的函数类型：</p>
+<pre><code class="hljs Javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">x: number</span>): <span class="hljs-title">number</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">x: string</span>): <span class="hljs-title">string</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverse</span>(<span class="hljs-params">x: number | string</span>): <span class="hljs-title">number</span> | <span class="hljs-title">string</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&#x27;number&#x27;</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Number</span>(x.toString().split(<span class="hljs-string">&#x27;&#x27;</span>).reverse().join(<span class="hljs-string">&#x27;&#x27;</span>));
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;
+        <span class="hljs-keyword">return</span> x.split(<span class="hljs-string">&#x27;&#x27;</span>).reverse().join(<span class="hljs-string">&#x27;&#x27;</span>);
+    &#125;
+&#125;</code></pre>
+<h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><h5 id="1、语法"><a href="#1、语法" class="headerlink" title="1、语法"></a>1、语法</h5><pre><code class="hljs actionscript">值 <span class="hljs-keyword">as</span> 类型 或 &lt;类型&gt;值</code></pre>
+<h5 id="2、用途"><a href="#2、用途" class="headerlink" title="2、用途"></a>2、用途</h5><blockquote>
+<ul>
+<li>将一个联合类型断言为其中一个类型</li>
+<li>将一个父类断言为更加具体的子类</li>
+<li>将任何一个类型断言为 any</li>
+<li>将 any 断言为一个具体的类型</li>
+</ul>
+</blockquote>
+<p>文章参考来自<a target="_blank" rel="noopener" href="https://ts.xcatliu.com/">阮一峰</a>老师</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/typescript/">typescript</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">转载请注明出处哦！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/11/interview/index/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">interview/article</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/12/06/other/someMethod/">
+                        <span class="hidden-mobile">一些项目中用到的方法（正则、去重、时间转换and more)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "ta1SazqmM6yS6gbxHfzzng2R-gzGzoHsz",
+          app_key: "lAKim19qxyluLDagQHWPIV5l",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a rel="nofollow noopener"><span>2020</span></a> <i class="iconfont icon-love"></i> <a href="https://wsyweb.github.io/" target="_blank" rel="nofollow noopener"><span>wsy</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "typescript初入门&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
